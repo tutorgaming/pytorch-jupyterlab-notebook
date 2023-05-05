@@ -1,0 +1,28 @@
+#####################################################################
+# Docker Compose File for launching containers services
+# Author: Theppasith N. <tutorgaming@gmail.com>
+# Date: 6-May-2023
+#####################################################################
+version: '2.0'
+services:
+  main:
+    container_name: torch
+    image: tutorgaming/pytorch-docker:latest
+    build: .
+    environment:
+      - JUPYTER_TOKEN=obodroid
+    volumes:
+      # HOST:CONTAINER
+      - /home/tutor/Repository/torch_ws:/workspace
+    ports:
+      # HOST:CONTAINER
+      - 8888:8888
+    deploy:
+      resources:
+        reservations:
+          devices:
+            # Enable Nvidia Docker
+            - driver: nvidia
+              count: all 
+              capabilities: [gpu]
+
