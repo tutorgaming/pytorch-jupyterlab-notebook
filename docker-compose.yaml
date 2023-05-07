@@ -6,14 +6,14 @@
 version: '2.0'
 services:
   main:
-    container_name: torch
+    container_name: torch-tutor
     image: tutorgaming/pytorch-docker:latest
     build: .
     environment:
       - JUPYTER_TOKEN=obodroid
     volumes:
       # HOST:CONTAINER
-      - /home/tutor/Repository/torch_ws:/workspace
+      - /home/tutor/Repository/workspace:/workspace
     ports:
       # HOST:CONTAINER
       - 8888:8888
