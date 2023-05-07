@@ -13,10 +13,12 @@ services:
       - JUPYTER_TOKEN=obodroid
     volumes:
       # HOST:CONTAINER
-      - /home/tutor/Repository/workspace:/workspace
+      - /home/tutor/Repository/workspace:/workspace # Workspace Path for Codes
+      - /home/tutor/Datasets:/workspace/Datasets:ro # Dataset Folder Path : Read-Only
     ports:
       # HOST:CONTAINER
-      - 8888:8888
+      - 8888:8888 # JupyterLab
+      - 6006:6006 # Tensorboard
     deploy:
       resources:
         reservations:

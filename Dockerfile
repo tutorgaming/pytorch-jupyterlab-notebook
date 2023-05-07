@@ -51,32 +51,57 @@ RUN apt-get install python3-pip -y
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 #####################################################################
-# 3. Install Pytorch Numpy and JupyterLab
+# 3. Install NodeJS (for jupyterlab)
+#####################################################################
+
+# Install through NodeJS Version Manager (NVM)
+RUN mkdir /usr/local/nvm
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 14.18.1
+RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+#####################################################################
+# 4. Install Pytorch Numpy and JupyterLab
 #####################################################################
 
 # Pip Essentials for Deep Learning 
 RUN pip install \
     numpy \
-    scikit-learn \ 
+    scikit-learn \
     scikit-image \
     scipy \
     torch \
-    torchvision \ 
+    torchvision \
     torchsummary \
     torchinfo \
     jupyterlab \
-    pandas \ 
+    pandas \
     matplotlib \
-    plotly \ 
+    plotly \
     tqdm \
-    pillow
+    pillow \
+    tensorflow \
+    tensorboardcolab \
+    tensorboard
 
-# Pip OpenCV-Python
+#####################################################################
+# 5. Install OpenCV
+#####################################################################
+
+# Install OpenCV base with Apt (For Dependencies gathering also)
 RUN apt-get update && apt-get install python3-opencv libgl1 libglib2.0-dev -y
+# Install OpenCV Contrib version of Python
 RUN pip install opencv-contrib-python
 
 #####################################################################
-# 4. Install JupyterLab Extension
+# 6. Install JupyterLab Extension
 #####################################################################
 
 # Install From PIP 
@@ -84,9 +109,16 @@ RUN pip install \
     jupyterlab-horizon-theme \
     jupyterlab-git \
     jupyterlab-lsp \
-    jupyterlab-system-monitor \ 
+    jupyterlab-system-monitor \
     lckr-jupyterlab-variableinspector \
     ipympl
+
+# Code completion Language Server
+RUN pip install \
+    jedi-language-server
+
+# Enable Extensions
+COPY ./jupyterlab-setting/overrides.json /usr/local/share/jupyter/lab/settings/
  
 #####################################################################
 # Start Jupyter lab at Port 8888

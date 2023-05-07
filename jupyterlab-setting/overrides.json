@@ -1,0 +1,18 @@
+{
+    "@jupyterlab/apputils-extension:themes": {
+        "theme": "JupyterLab Dark"
+    },
+    "@jupyterlab/notebook-extension:tracker" : {
+        "codeCellConfig": {
+            "lineNumbers": true
+        }
+    },
+    "@jupyterlab/extensionmanager-extension:plugin" : {
+        "disclaimed": true,
+	"enabled": true
+    },
+    "@jupyterlab/apputils-extension:notification" : {
+        "fetchNews": "false"
+    }
+}
+
