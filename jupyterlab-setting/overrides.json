@@ -1,6 +1,7 @@
 {
     "@jupyterlab/apputils-extension:themes": {
-        "theme": "JupyterLab Dark"
+        "theme": "JupyterLab Dark",
+	"theme-scrollbars": true
     },
     "@jupyterlab/notebook-extension:tracker" : {
         "codeCellConfig": {
@@ -13,6 +14,15 @@
     },
     "@jupyterlab/apputils-extension:notification" : {
         "fetchNews": "false"
+    },
+    "@jupyterlab/codemirror-extension:commands" : {
+        "keyMap": "sublime",
+        "theme": "solarized dark",
+        "scrollPastEnd": true,
+        "styleActiveLine": false,
+        "styleSelectedText": true,
+        "selectionPointer": false,
+        "lineWiseCopyCut": true
     }
 }
 
