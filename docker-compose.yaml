@@ -11,13 +11,15 @@ services:
     build: .
     environment:
       - JUPYTER_TOKEN=obodroid
+      - TERM=xterm-256color
     volumes:
       # HOST:CONTAINER
-      - /home/tutor/Repository/workspace:/workspace # Workspace Path for Codes
-      - /home/tutor/Datasets:/workspace/Datasets:ro # Dataset Folder Path : Read-Only
+      - ${HOME}/Repository/workspace:/workspace # Workspace Path for Codes
+      - ${HOME}/Datasets:/workspace/Datasets:ro # Dataset Folder Path : Read-Only
+      - ${HOME}/Datasets:/root/Datasets
     ports:
       # HOST:CONTAINER
-      - 8888:8888 # JupyterLab
+      - 8080:8888 # JupyterLab
       - 6006:6006 # Tensorboard
     deploy:
       resources:
@@ -25,6 +27,5 @@ services:
           devices:
             # Enable Nvidia Docker
             - driver: nvidia
-              count: all 
+              count: all
               capabilities: [gpu]
-
