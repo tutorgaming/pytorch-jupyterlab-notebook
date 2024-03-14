@@ -1,4 +1,4 @@
-# No-brainer GPU Docker with Pytorch and JupyterLab 
+# No-brainer GPU Docker with Pytorch and JupyterLab
 
 ![Cat Meme](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
@@ -16,4 +16,9 @@ Hope that is kickstarted the data scientist to have fun with the torch stuff mor
 No brainer start by using docker-compose.yaml
 ```
 docker compose up -d --build
+```
+
+Or even more brainless
+```
+./start.sh
 ```

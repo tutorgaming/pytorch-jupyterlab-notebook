@@ -6,17 +6,16 @@
 version: '2.0'
 services:
   main:
-    container_name: torch-tutor
-    image: tutorgaming/pytorch-docker:latest
-    build: .
+    container_name: torch-tutor                     # Running Container Name
+    image: tutorgaming/pytorch-docker:latest        # After build Image Name
+    build: .                                        # Where's "Dockerfile"
     environment:
-      - JUPYTER_TOKEN=obodroid
-      - TERM=xterm-256color
+      - JUPYTER_TOKEN=obodroid                      # Jupyter Password
+      - TERM=xterm-256color                         # Colored Terminal
     volumes:
       # HOST:CONTAINER
-      - ${HOME}/Repository/workspace:/workspace # Workspace Path for Codes
-      - ${HOME}/Datasets:/workspace/Datasets:ro # Dataset Folder Path : Read-Only
-      - ${HOME}/Datasets:/root/Datasets
+      - ${HOST_WORKSPACE_PATH}:/workspace           # Workspace Path for Codes
+      - ${HOST_DATASET_PATH}:/workspace/Datasets:ro # Dataset Folder Path : Read-Only
     ports:
       # HOST:CONTAINER
       - 8080:8888 # JupyterLab
