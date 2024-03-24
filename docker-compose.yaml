@@ -19,7 +19,6 @@ services:
     ports:
       # HOST:CONTAINER
       - 8080:8888 # JupyterLab
-      - 6006:6006 # Tensorboard
     deploy:
       resources:
         reservations:
@@ -28,3 +27,16 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
+
+  tensorboard:
+    container_name: tensorboard-tutor               # Running Container Name
+    image: tensorflow/tensorflow:latest
+    environment:
+      - TERM=xterm-256color                         # Colored Terminal
+    volumes:
+      # HOST:CONTAINER
+      - ${HOST_WORKSPACE_PATH}:/workspace           # Workspace Path for Codes
+    ports:
+      # HOST:CONTAINER
+      - 6060:6006 # Tensorboard
+    command: tensorboard --logdir=/workspace/results --bind_all  # Tensorboard Command
