@@ -71,7 +71,8 @@ ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 # 4. Install Pytorch Numpy and JupyterLab
 #####################################################################
 
-# Pip Essentials for Deep Learning 
+# Pip Essentials for Deep Learning
+RUN pip3 install --upgrade setuptools pip
 RUN pip install \
     numpy \
     scikit-learn \
@@ -104,7 +105,7 @@ RUN pip install opencv-contrib-python
 # 6. Install JupyterLab Extension
 #####################################################################
 
-# Install From PIP 
+# Install From PIP
 RUN pip install \
     jupyterlab-horizon-theme \
     jupyterlab-git \
@@ -119,7 +120,7 @@ RUN pip install \
 
 # Enable Extensions
 COPY ./jupyterlab-setting/overrides.json /usr/local/share/jupyter/lab/settings/
- 
+
 #####################################################################
 # Start Jupyter lab at Port 8888
 #####################################################################
