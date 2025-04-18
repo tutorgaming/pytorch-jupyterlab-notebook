@@ -125,7 +125,7 @@ COPY ./jupyterlab-setting/overrides.json /usr/local/share/jupyter/lab/settings/
 # 7. Install Misc.
 #####################################################################
 RUN pip install tz
-
+RUN pip install torch-tensorrt tensorrt
 #####################################################################
 # Start Jupyter lab at Port 8888
 #####################################################################
